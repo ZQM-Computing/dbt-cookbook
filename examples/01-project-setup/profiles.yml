@@ -1,0 +1,20 @@
+# dbt 01-project-setup — profiles.
+# DEFAULT target dev (DuckDB): runs anywhere, no server, no credentials.
+# VARIANT target pg (Postgres): requires working Postgres auth.
+#   Node-4's Postgres auth is blocked — do not run pg there until it lands.
+#   All credential values are env-var placeholders, never real values.
+countries_demo:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ./dev.duckdb
+    pg:
+      type: postgres
+      host: "{{ env_var('DBT_PG_HOST', 'localhost') }}"
+      user: "{{ env_var('DBT_PG_USER', 'your_user') }}"
+      password: "{{ env_var('DBT_PG_PASSWORD', 'your_password') }}"
+      port: 5432
+      dbname: "{{ env_var('DBT_PG_DBNAME', 'your_db') }}"
+      schema: "{{ env_var('DBT_PG_SCHEMA', 'dbt_demo') }}"
+      threads: 4

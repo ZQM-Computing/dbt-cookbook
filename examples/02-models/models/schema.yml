@@ -1,0 +1,19 @@
+# dbt 02-models — model documentation.
+# Generic tests (unique, not_null) are attached here; they are
+# exercised in pattern 03.
+version: 2
+
+models:
+  - name: stg_countries
+    description: "Staging: cleaned seed rows, one per country."
+    columns:
+      - name: country_name
+        description: "Country name, as seeded."
+      - name: area_sqkm
+        description: "Land area in square kilometres."
+      - name: population
+        description: "Population count."
+  - name: int_countries
+    description: "Intermediate: staging plus population density."
+  - name: countries_summary
+    description: "Mart: one summary row over all countries."

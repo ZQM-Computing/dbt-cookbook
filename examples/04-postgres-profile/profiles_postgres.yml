@@ -1,0 +1,17 @@
+# dbt 04-postgres-profile — the fleet's Postgres target.
+# Copy the pg output into your own profiles.yml; do NOT commit a
+# filled-in copy. All credential values are env-var placeholders.
+# Requires working Postgres auth (Node-4's auth is blocked — see README).
+# All files BOM-less (see pattern 01 for the BOM trap).
+countries_demo:
+  target: pg
+  outputs:
+    pg:
+      type: postgres
+      host: "{{ env_var('DBT_PG_HOST', 'localhost') }}"
+      user: "{{ env_var('DBT_PG_USER', 'your_user') }}"
+      password: "{{ env_var('DBT_PG_PASSWORD', 'your_password') }}"
+      port: 5432
+      dbname: "{{ env_var('DBT_PG_DBNAME', 'your_db') }}"
+      schema: "{{ env_var('DBT_PG_SCHEMA', 'dbt_demo') }}"
+      threads: 4

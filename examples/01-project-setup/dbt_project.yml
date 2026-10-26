@@ -1,0 +1,19 @@
+# dbt 01-project-setup — minimal project definition.
+# All files in this pattern are written BOM-less (UTF-8 without BOM):
+# PowerShell 5.1's UTF-8 BOM breaks Postgres with a "?SELECT" error.
+name: countries_demo
+version: "1.0.0"
+config-version: 2
+profile: countries_demo
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  countries_demo:
+    +materialized: view

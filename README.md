@@ -15,7 +15,7 @@ A **dbt cookbook** for SQL transformations, models, and tests on Postgres. Patte
 
 ## Repository role and status
 
-**Status:** Active, public — seeding. Pattern passes land in follow-up work from fleet-verified setups; the tables below list what is planned, not what is already written.
+**Status:** Active, public — first pattern pass written (design-only, gate 1 target; runtime validation pending). The table below lists what is written; no pattern has been runtime-validated yet.
 
 **What this repository is:** dbt patterns — see the table below.
 
@@ -30,31 +30,34 @@ Analytics engineers who transform warehouse tables with versioned SQL.
 ## Prerequisites
 
 - dbt Core 1.12.6 + dbt-postgres 1.11.0
-- Postgres with a demo schema
+- Postgres with a demo schema, or DuckDB for the default target (see pattern 01)
 - Bash or PowerShell
 
-## Patterns (planned)
+## Patterns
 
-| # | Example | What it will demonstrate |
-|---|---------|--------------------------|
-| 01 | `01-project-setup` | Initializing a dbt project and a Postgres profile |
-| 02 | `02-models` | Staging, intermediate, and mart models |
-| 03 | `03-tests` | Generic and singular tests, run in CI shape |
-| 04 | `04-postgres-profile` | The fleet's Postgres profile pattern, including the demo models |
+| # | Example | Status | What it demonstrates |
+|---|---------|--------|----------------------|
+| 01 | [01-project-setup](examples/01-project-setup/README.md) | Written (design-only) | Initializing a dbt project and a Postgres profile |
+| 02 | [02-models](examples/02-models/README.md) | Written (design-only) | Staging, intermediate, and mart models |
+| 03 | [03-tests](examples/03-tests/README.md) | Written (design-only) | Generic and singular tests, run in CI shape |
+| 04 | [04-postgres-profile](examples/04-postgres-profile/README.md) | Written (design-only) | The fleet's Postgres profile pattern, including the demo models |
 
 ## Repository layout
 
 ```text
 dbt-cookbook/
-├── examples/          # pattern passes, landing in follow-up work
+├── examples/01-project-setup/    # DuckDB-first profiles
+├── examples/02-models/           # staging, intermediate, mart
+├── examples/03-tests/            # generic + singular tests, CI shape
+├── examples/04-postgres-profile/ # fleet Postgres profile + checklist
 ├── README.md
 └── LICENSE
 ```
 
 ## Roadmap
 
-- First pattern pass: the first two table rows
-- Second pass: the remaining rows, from fleet-verified setups
+- First pattern pass: complete (all 4 patterns, design-only).
+- Next: gate-3 runtime validation against the fleet's dbt installs.
 
 ## Contributing
 

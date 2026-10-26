@@ -1,0 +1,21 @@
+# dbt 03-tests — generic tests on stg_countries.
+# A generic test passes when its query returns no rows.
+version: 2
+
+models:
+  - name: stg_countries
+    description: "Staging: cleaned seed rows, one per country."
+    columns:
+      - name: country_name
+        description: "Country name, as seeded."
+        tests:
+          - unique
+          - not_null
+      - name: area_sqkm
+        description: "Land area in square kilometres."
+        tests:
+          - not_null
+      - name: population
+        description: "Population count."
+        tests:
+          - not_null
